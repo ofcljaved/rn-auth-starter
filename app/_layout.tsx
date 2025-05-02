@@ -1,8 +1,6 @@
 import { AuthProvider } from "@/context/auth.context";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Slot } from "expo-router";
-import { Suspense } from "react";
-import { Text } from "react-native";
+import { Stack } from "expo-router";
 
 const queryClient = new QueryClient();
 
@@ -10,9 +8,10 @@ export default function RootLayout() {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <Suspense fallback={<Text>Loading...</Text>}>
-          <Slot />
-        </Suspense>
+        <Stack >
+          <Stack.Screen name="(protected)" options={{ headerShown: false }} />
+          <Stack.Screen name="log-in" options={{ animation: "none" }} />
+        </Stack>
       </AuthProvider>
     </QueryClientProvider>
   );

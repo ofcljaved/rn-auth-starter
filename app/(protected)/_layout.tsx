@@ -2,7 +2,7 @@ import { useAuth } from "@/context/auth.context";
 import { Redirect, Stack } from "expo-router";
 import { Text } from "react-native";
 
-export default async function RootLayout() {
+export default function ProtectedLayout() {
   const { user, isLoading } = useAuth();
   if (isLoading) {
     return <Text>Loading...</Text>;
