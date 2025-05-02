@@ -3,19 +3,19 @@ import { User } from "@/types";
 import { createContext, PropsWithChildren, use } from "react";
 
 const AuthContext = createContext<{
-  user: User | undefined;
+  user: User | null;
   isLoading: boolean;
 }>({
-  user: undefined,
+  user: null,
   isLoading: false,
 });
 
 export function AuthProvider({ children }: PropsWithChildren) {
   const { data: user, isLoading } = useGetUser();
   return (
-    <AuthContext value={{ user, isLoading }}>
+    <AuthContext value={{ user: user ?? null, isLoading }}>
       {children}
-    </AuthContext>
+    </AuthContext >
   )
 }
 
